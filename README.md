@@ -16,3 +16,5 @@ If the credentials are invalid, the device is blocked from accessing the network
 How to Compile:
 Make sure OpenSSL and MQTT libraries are installed.
 Run the following command to compile the project: bash
+
+*****For deatailed understanding please read the REPORT*****
