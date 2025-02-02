@@ -17,4 +17,4 @@ How to Compile:
 Make sure OpenSSL and MQTT libraries are installed.
 Run the following command to compile the project: bash
 
-*****For deatailed understanding please read the REPORT*****
+*****For deatailed understanding please read my REPORT*****
