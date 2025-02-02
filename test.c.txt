@@ -1,0 +1,32 @@
+#include <stdint.h>
+#include <stdio.h>
+#include <string.h>
+
+uint32_t calculate_crc32(const uint8_t *data, size_t length) {
+uint32_t crc = 0xFFFFFFFF;
+
+for (size_t i = 0; i < length; i++) {
+        crc ^= data[i];
+        for (int j = 0; j < 8; j++) {
+            if (crc & 1) crc = (crc >> 1) ^ 0xEDB88320;
+            else crc >>= 1;
+        }
+    }
+return ~crc;
+}
+void check_integrity(uint8_t *data, size_t length, uint32_t expected_crc) {
+uint32_t crc = calculate_crc32(data, length);
+
+if (crc != expected_crc) {
+        printf("Tampering detected! Data corrupted.\n");
+    } else {
+        printf("Data integrity verified.\n");
+    }
+}
+int main() {
+const uint8_t test_data[] = "Hello Secure IoT World!";
+uint32_t expected_crc = 0x12345678;  // Replace with actual CRC32 value
+
+check_integrity((uint8_t *)test_data, strlen((const char *)test_data), expected_crc);
+return 0;
+}
